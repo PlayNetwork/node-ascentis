@@ -1,13 +1,8 @@
 var
-	ascentis = requireWithCoverage('index'),
-
-	account = 'playnetwork',
-	clientKey = 'M65ipU/X/Lk+zt1nHDVlV0',
-	host = 'selfservice2.ascentis.com',
-	secretKey = 'sPJ7s1L2VQkYmTS4ZmiSpY';
+	ascentis = requireWithCoverage('index');
 
 
-describe('ascentis', function () {
+describe('unit tests for component', function () {
 	'use strict';
 
 	this.timeout(25000);
@@ -16,17 +11,15 @@ describe('ascentis', function () {
 
 	beforeEach(function () {
 		client = ascentis.initialize({
-				account : account,
-				clientKey : clientKey,
-				host : host,
-				secretKey : secretKey
+				account : 'testing',
+				clientKey : 'key',
+				host : 'api.ascentis.com',
+				secretKey : 'secret'
 			});
 
-		/*
-		client.request.on('request', function (options) {
-			console.log(options);
-		});
-		//*/
+		client.request.get = function (options, callback) {
+			return callback(null, options);
+		};
 	});
 
 	describe('#createRequestHeaders', function () {
@@ -43,6 +36,10 @@ describe('ascentis', function () {
 			client.getBulkData(function (err, data) {
 				should.not.exist(err);
 				should.exist(data);
+				data.path.should.contain('/testing/api/v1.1/rawdata');
+				data.headers.should.include.keys('Accept');
+				data.headers.should.include.keys('Authorization');
+				data.headers.should.include.keys('Timestamp');
 
 				done();
 			});
@@ -54,6 +51,10 @@ describe('ascentis', function () {
 			client.getEmployees(function (err, data) {
 				should.not.exist(err);
 				should.exist(data);
+				data.path.should.contain('/testing/api/v1.1/employees');
+				data.headers.should.include.keys('Accept');
+				data.headers.should.include.keys('Authorization');
+				data.headers.should.include.keys('Timestamp');
 
 				done();
 			});
@@ -65,6 +66,25 @@ describe('ascentis', function () {
 			client.getFields(function (err, data) {
 				should.not.exist(err);
 				should.exist(data);
+				data.path.should.contain('/testing/api/v1.1/fields');
+				data.headers.should.not.include.keys('Accept');
+				data.headers.should.include.keys('Authorization');
+				data.headers.should.include.keys('Timestamp');
+
+				done();
+			});
+		});
+	});
+
+	describe('#getLocations', function () {
+		it('should properly retrieve all locations', function (done) {
+			client.getLocations(function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
+				data.path.should.contain('/testing/api/v1.1/location');
+				data.headers.should.include.keys('Accept');
+				data.headers.should.include.keys('Authorization');
+				data.headers.should.include.keys('Timestamp');
 
 				done();
 			});
@@ -76,6 +96,10 @@ describe('ascentis', function () {
 			client.getJobs(function (err, data) {
 				should.not.exist(err);
 				should.exist(data);
+				data.path.should.contain('/testing/api/v1.1/job');
+				data.headers.should.include.keys('Accept');
+				data.headers.should.include.keys('Authorization');
+				data.headers.should.include.keys('Timestamp');
 
 				done();
 			});
