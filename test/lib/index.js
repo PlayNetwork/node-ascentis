@@ -22,7 +22,7 @@ describe('ascentis', function () {
 				secretKey : secretKey
 			});
 
-		///*
+		/*
 		client.request.on('request', function (options) {
 			console.log(options);
 		});
@@ -54,6 +54,19 @@ describe('ascentis', function () {
 			client.getEmployees(function (err, data) {
 				should.not.exist(err);
 				should.exist(data);
+
+				done();
+			});
+		});
+	});
+
+	describe('#getFields', function () {
+		it('should properly retrieve custom defined fields', function (done) {
+			client.getFields(function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
+
+				console.log(JSON.stringify(data, 0, 2));
 
 				done();
 			});
