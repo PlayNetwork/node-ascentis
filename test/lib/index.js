@@ -10,6 +10,8 @@ var
 describe('ascentis', function () {
 	'use strict';
 
+	this.timeout(25000);
+
 	var client;
 
 	beforeEach(function () {
@@ -19,6 +21,12 @@ describe('ascentis', function () {
 				host : host,
 				secretKey : secretKey
 			});
+
+		/*
+		client.request.on('request', function (options) {
+			console.log(options);
+		});
+		*/
 	});
 
 	describe('#getRequestHeaders', function () {
@@ -30,15 +38,22 @@ describe('ascentis', function () {
 		});
 	});
 
+	describe('#getBulkData', function () {
+		it('should properly retrieve bulk employee data', function (done) {
+			client.getBulkData(function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
+
+				done();
+			});
+		});
+	});
+
 	describe('#getEmployees', function () {
 		it('should properly retrieve employees', function (done) {
-			client.request.on('request', function (options) {
-				console.log(options);
-			});
-
-			client.getEmployees(function (err, employees) {
+			client.getEmployees(function (err, data) {
 				should.not.exist(err);
-				should.exist(employees);
+				should.exist(data);
 
 				done();
 			});
