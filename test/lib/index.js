@@ -66,7 +66,16 @@ describe('ascentis', function () {
 				should.not.exist(err);
 				should.exist(data);
 
-				console.log(JSON.stringify(data, 0, 2));
+				done();
+			});
+		});
+	});
+
+	describe('#getJobs', function () {
+		it('should properly retrieve all jobs defined', function (done) {
+			client.getJobs(function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
 
 				done();
 			});
