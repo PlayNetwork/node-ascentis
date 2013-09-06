@@ -22,16 +22,16 @@ describe('ascentis', function () {
 				secretKey : secretKey
 			});
 
-		/*
+		///*
 		client.request.on('request', function (options) {
 			console.log(options);
 		});
-		*/
+		//*/
 	});
 
-	describe('#getRequestHeaders', function () {
-		it('should properly build authentication header', function () {
-			var headers = client.getRequestHeaders({ path : '/api/v1.1/employees' });
+	describe('#createRequestHeaders', function () {
+		it('should properly build authentication and timestamp header values', function () {
+			var headers = client.createRequestHeaders({ path : '/api/v1.1/employees' });
 			should.exist(headers);
 			should.exist(headers.Timestamp);
 			should.exist(headers.Authorization);
