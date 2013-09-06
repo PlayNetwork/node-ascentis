@@ -16,6 +16,9 @@
 		"coverage" : "NODE_ASCENTIS_COVERAGE=true mocha -R mocha-lcov-reporter -r ./test/common.js ./test/lib | ./node_modules/coveralls/bin/coveralls.js",
 		"posttest" : "rm -rf reports ; mkdir -p reports ; NODE_ASCENTIS_COVERAGE=true mocha -R html-cov -r ./test/common.js ./test/lib > reports/coverage.html"
 	},
+	"dependencies" : {
+		"moment" : "~2.1.0"
+	},
 	"devDependencies" : {
 		"chai" : "*",
 		"coveralls" : "*",
