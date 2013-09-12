@@ -74,13 +74,37 @@ client.getEmployees(criteria, function (err, data) {
 
 <http://www.ascentis.com/api/attachments.asp>
 
+* Not supported yet
+
 ### Retrieve Benefit Plan Enrollment Information
 
 <http://www.ascentis.com/api/benefitsenrollment.asp>
 
-### Find Benefit Plan ID
+### Find Benefit Plans
 
 <http://www.ascentis.com/api/FindPlan.asp>
+
+```Javascript
+client.getBenefitPlans(function (err, data) {
+  if (!err) {
+    // we haz teh datas
+  }
+});
+```
+
+If you would like to search for a specific benefit plan, simply provide the search criteria when calling the method:
+
+```Javascript
+var criteria = {
+  benefitPlanId : 12
+};
+
+client.getBenefitPlans(criteria, function (err, data) {
+  if (!err) {
+    // we haz teh datas
+  }
+});
+```
 
 ### Access User Defined Employee Fields
 
@@ -98,9 +122,13 @@ client.getFields(function (err, data) {
 
 <http://www.ascentis.com/api/compensation.asp>
 
+* Not supported yet
+
 ### Work With Existing Employee
 
 <http://www.ascentis.com/api/employee.asp>
+
+* Not supported yet
 
 ### Retrieve Employee Benefits
 
@@ -140,7 +168,7 @@ client.getEmployeeJobDetails(criteria, function (err, data) {
 
 <http://www.ascentis.com/api/newhire.asp>
 
-Not supported yet
+* Not supported yet
 
 ### Retrieve Direct Deposit Information for Employee
 

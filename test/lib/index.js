@@ -31,6 +31,38 @@ describe('unit tests for component', function () {
 		});
 	});
 
+	describe('#getBenefitPlans', function () {
+		it('should properly retrieve all benefit plans', function (done) {
+			client.getBenefitPlans(function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
+				data.path.should.contain('/testing/api/v1.1/benefits');
+				data.headers.should.include.keys('Accept');
+				data.headers.should.include.keys('Authorization');
+				data.headers.should.include.keys('Timestamp');
+
+				done();
+			});
+		});
+
+		it('should properly retrieve a specific benefit plan', function (done) {
+			var criteria = {
+				benefitPlanId : 1
+			};
+
+			client.getBenefitPlans(criteria, function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
+				data.path.should.contain('/testing/api/v1.1/benefits/1');
+				data.headers.should.include.keys('Accept');
+				data.headers.should.include.keys('Authorization');
+				data.headers.should.include.keys('Timestamp');
+
+				done();
+			});
+		});
+	});
+
 	describe('#getChanges', function () {
 		it('should report an exception if no from or id parameter is supplied', function (done) {
 			client.getChanges(function (err, data) {
