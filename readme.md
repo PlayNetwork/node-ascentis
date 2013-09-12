@@ -30,7 +30,7 @@ var client = ascentis.initialize({
 });
 
 // make API calls
-ascentis.getEmployees(function (err, data) {
+client.getEmployees(function (err, data) {
   if (!err) {
     // we haz teh datas
   }
@@ -48,7 +48,7 @@ Authentication is handled automatically for each API call provided that you supp
 <http://www.ascentis.com/api/finder.asp>
 
 ```Javascript
-ascentis.getEmployees(function (err, data) {
+client.getEmployees(function (err, data) {
   if (!err) {
     // we haz teh datas
   }
@@ -63,7 +63,7 @@ var criteria = {
   lastname : 'McGee'
 };
 
-ascentis.getEmployees(criteria, function (err, data) {
+client.getEmployees(criteria, function (err, data) {
   if (!err) {
     // we haz teh datas
   }
@@ -87,7 +87,7 @@ ascentis.getEmployees(criteria, function (err, data) {
 <http://www.ascentis.com/api/custom.asp>
 
 ```Javascript
-ascentis.getFields(function (err, data) {
+client.getFields(function (err, data) {
   if (!err) {
     // we haz teh datas
   }
@@ -110,13 +110,38 @@ ascentis.getFields(function (err, data) {
 
 <http://www.ascentis.com/api/job.asp>
 
+```Javascript
+var criteria = {
+  employeeId : 1,
+  asof : '2013-01-01'
+};
+
+client.getEmployeeJobDetails(criteria, function (err, data) {
+  if (!err) {
+    // we haz teh datas
+  }
+});
+```
+
 ### Create New Hire
 
 <http://www.ascentis.com/api/newhire.asp>
 
+Not supported yet
+
 ### Retrieve Direct Deposit Information for Employee
 
 <http://www.ascentis.com/api/directdep.asp>
+
+```Javascript
+var employeeId = 1;
+
+client.getDirectDeposits(employeeId, function (err, data) {
+  if (!err) {
+    // we haz teh datas
+  }
+});
+```
 
 ### Retrieve HR Change Log
 
@@ -127,7 +152,7 @@ var criteria = {
   from : '01/01/2013'
 };
 
-ascentis.getChanges(criteria, function (err, data) {
+client.getChanges(criteria, function (err, data) {
   if (!err) {
     // we haz teh datas
   }
@@ -143,7 +168,7 @@ var criteria = {
   from : '01/01/2013'
 };
 
-ascentis.getCOBRAEligibleEmployees(criteria, function (err, data) {
+client.getCOBRAEligibleEmployees(criteria, function (err, data) {
   if (!err) {
     // we haz teh datas
   }
@@ -157,7 +182,7 @@ ascentis.getCOBRAEligibleEmployees(criteria, function (err, data) {
 ```Javascript
 var employeeId = 101;
 
-ascentis.getEmergencyContacts(employeeId, function (err, data) {
+client.getEmergencyContacts(employeeId, function (err, data) {
   if (!err) {
     // emergency contacts!
   }
@@ -169,7 +194,7 @@ ascentis.getEmergencyContacts(employeeId, function (err, data) {
 <http://www.ascentis.com/api/jobs.asp>
 
 ```Javascript
-ascentis.getJobs(function (err, data) {
+client.getJobs(function (err, data) {
   if (!err) {
     // we haz teh jobs
   }
@@ -181,7 +206,7 @@ If you would like to retrieve a specific job, provide a job ID:
 ```Javascript
 var jobId = 101;
 
-ascentis.getJobs(jobId, function (err, data) {
+client.getJobs(jobId, function (err, data) {
   if (!err) {
     // we haz teh specific job
   }
@@ -193,7 +218,7 @@ ascentis.getJobs(jobId, function (err, data) {
 <http://www.ascentis.com/api/location.asp>
 
 ```Javascript
-ascentis.getLocations(function (err, data) {
+client.getLocations(function (err, data) {
   if (!err) {
     // we haz teh locations
   }
@@ -205,7 +230,7 @@ If you would like to retrieve a specific location, provide a location ID:
 ```Javascript
 var locationId = 101;
 
-ascentis.getLocations(locationId, function (err, data) {
+client.getLocations(locationId, function (err, data) {
   if (!err) {
     // we haz teh specific location
   }
@@ -217,7 +242,7 @@ ascentis.getLocations(locationId, function (err, data) {
 <http://www.ascentis.com/api/rawdata.asp>
 
 ```Javascript
-ascentis.getRawData(function (err, data) {
+client.getRawData(function (err, data) {
   if (!err) {
     // we haz teh raw datas
   }
