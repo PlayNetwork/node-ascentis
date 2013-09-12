@@ -92,6 +92,30 @@ describe('unit tests for component', function () {
 		});
 	});
 
+	describe('#getDirectDeposits', function () {
+		it('should report an exception if no employeeId is supplied', function (done) {
+			client.getDirectDeposits(function (err, data) {
+				should.exist(err);
+				should.not.exist(data);
+
+				done();
+			});
+		});
+
+		it('should properly retrieve employee direct deposits', function (done) {
+			client.getDirectDeposits(1, function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
+				data.path.should.contain('/testing/api/v1.1/employee/1/deposit');
+				data.headers.should.include.keys('Accept');
+				data.headers.should.include.keys('Authorization');
+				data.headers.should.include.keys('Timestamp');
+
+				done();
+			});
+		});
+	});
+
 	describe('#getEmergencyContacts', function () {
 		it('should report an exception if no employeeId is supplied', function (done) {
 			client.getEmergencyContacts(function (err, data) {
