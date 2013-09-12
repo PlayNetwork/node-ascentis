@@ -31,12 +31,21 @@ describe('unit tests for component', function () {
 		});
 	});
 
-	describe('#getBulkData', function () {
-		it('should properly retrieve bulk employee data', function (done) {
-			client.getBulkData(function (err, data) {
+	describe('#getEmergencyContacts', function () {
+		it('should report an exception if no employeeId is supplied', function (done) {
+			client.getEmergencyContacts(function (err, data) {
+				should.exist(err);
+				should.not.exist(data);
+
+				done();
+			});
+		});
+
+		it('should properly retrieve employee emergency contacts', function (done) {
+			client.getEmergencyContacts(1, function (err, data) {
 				should.not.exist(err);
 				should.exist(data);
-				data.path.should.contain('/testing/api/v1.1/rawdata');
+				data.path.should.contain('/testing/api/v1.1/employee/1/emergency');
 				data.headers.should.include.keys('Accept');
 				data.headers.should.include.keys('Authorization');
 				data.headers.should.include.keys('Timestamp');
@@ -52,6 +61,19 @@ describe('unit tests for component', function () {
 				should.not.exist(err);
 				should.exist(data);
 				data.path.should.contain('/testing/api/v1.1/employees');
+				data.headers.should.include.keys('Accept');
+				data.headers.should.include.keys('Authorization');
+				data.headers.should.include.keys('Timestamp');
+
+				done();
+			});
+		});
+
+		it('should properly search employees', function (done) {
+			client.getEmployees({ lastname : 'bawss' }, function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
+				data.path.should.contain('/testing/api/v1.1/employees?lastname=bawss');
 				data.headers.should.include.keys('Accept');
 				data.headers.should.include.keys('Authorization');
 				data.headers.should.include.keys('Timestamp');
@@ -89,6 +111,19 @@ describe('unit tests for component', function () {
 				done();
 			});
 		});
+
+		it('should properly retrieve a specific location', function (done) {
+			client.getLocations(1, function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
+				data.path.should.contain('/testing/api/v1.1/location/1');
+				data.headers.should.include.keys('Accept');
+				data.headers.should.include.keys('Authorization');
+				data.headers.should.include.keys('Timestamp');
+
+				done();
+			});
+		});
 	});
 
 	describe('#getJobs', function () {
@@ -97,6 +132,21 @@ describe('unit tests for component', function () {
 				should.not.exist(err);
 				should.exist(data);
 				data.path.should.contain('/testing/api/v1.1/job');
+				data.headers.should.include.keys('Accept');
+				data.headers.should.include.keys('Authorization');
+				data.headers.should.include.keys('Timestamp');
+
+				done();
+			});
+		});
+	});
+
+	describe('#getRawData', function () {
+		it('should properly retrieve raw employee data', function (done) {
+			client.getRawData(function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
+				data.path.should.contain('/testing/api/v1.1/rawdata');
 				data.headers.should.include.keys('Accept');
 				data.headers.should.include.keys('Authorization');
 				data.headers.should.include.keys('Timestamp');
