@@ -1,10 +1,10 @@
 var
 	ascentis = requireWithCoverage('index'),
 
-	account = 'playnetwork',
-	clientKey = 'M65ipU/X/Lk+zt1nHDVlV0',
+	account = '',
+	clientKey = '',
 	host = 'selfservice2.ascentis.com',
-	secretKey = 'sPJ7s1L2VQkYmTS4ZmiSpY';
+	secretKey = '';
 
 
 describe('functional tests for Ascentis API', function () {
