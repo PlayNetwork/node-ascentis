@@ -29,9 +29,18 @@ describe('functional tests for Ascentis API', function () {
 		//*/
 	});
 
-	describe('#getBulkData', function () {
-		it('should properly retrieve bulk employee data', function (done) {
-			client.getBulkData(function (err, data) {
+	describe('#getEmployees', function () {
+		it('should properly retrieve employees', function (done) {
+			client.getEmployees(function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
+
+				done();
+			});
+		});
+
+		it('should properly search employees', function (done) {
+			client.getEmployees({ lastname : 'thomas' }, function (err, data) {
 				should.not.exist(err);
 				should.exist(data);
 
@@ -40,9 +49,9 @@ describe('functional tests for Ascentis API', function () {
 		});
 	});
 
-	describe('#getEmployees', function () {
-		it('should properly retrieve employees', function (done) {
-			client.getEmployees(function (err, data) {
+	describe('#getEmergencyContacts', function () {
+		it('should properly retrieve employee emergency contacts', function (done) {
+			client.getEmergencyContacts(362, function (err, data) {
 				should.not.exist(err);
 				should.exist(data);
 
@@ -71,11 +80,40 @@ describe('functional tests for Ascentis API', function () {
 				done();
 			});
 		});
+
+		it('should properly retrieve a specific location', function (done) {
+			client.getLocations(151, function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
+
+				done();
+			});
+		});
 	});
 
 	describe('#getJobs', function () {
 		it('should properly retrieve all jobs defined', function (done) {
 			client.getJobs(function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
+
+				done();
+			});
+		});
+
+		it('should properly retrieve a specific job', function (done) {
+			client.getJobs(337, function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
+
+				done();
+			});
+		});
+	});
+
+	describe('#getRawData', function () {
+		it('should properly retrieve bulk employee data', function (done) {
+			client.getRawData(function (err, data) {
 				should.not.exist(err);
 				should.exist(data);
 

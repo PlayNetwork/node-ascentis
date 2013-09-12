@@ -2,7 +2,7 @@
 
 A node library for consuming Ascentis Web APIs.
 
-[![Build Status](https://travis-ci.org/PlayNetwork/cloudmade-lib.png?branch=master)](https://travis-ci.org/PlayNetwork/cloudmade-lib) [![Coverage Status](https://coveralls.io/repos/PlayNetwork/cloudmade-lib/badge.png?branch=master)](https://coveralls.io/r/PlayNetwork/cloudmade-lib?branch=master)
+[![Build Status](https://travis-ci.org/PlayNetwork/node-ascentis.png?branch=master)](https://travis-ci.org/PlayNetwork/node-ascentis) [![Coverage Status](https://coveralls.io/repos/PlayNetwork/node-ascentis/badge.png?branch=master)](https://coveralls.io/r/PlayNetwork/node-ascentis?branch=master)
 
 ## Features
 
@@ -18,13 +18,57 @@ npm install ascentis
 
 Ascentis Web API documentation: <http://www.ascentis.com/api/Documentation.asp>
 
+```Javascript
+var ascentis = require('ascentis');
+
+// initialize an API client
+var client = ascentis.initialize({
+  account : 'company',
+  clientKey : 'clientKey',
+  host : 'selfservice2.ascentis.com',
+  secretKey : 'secretKey'
+});
+
+// make API calls
+ascentis.getEmployees(function (err, data) {
+  if (!err) {
+    // we haz teh datas
+  }
+});
+```
+
 ### Authentication
 
 <http://www.ascentis.com/api/authentication.asp>
 
+Authentication is handled automatically for each API call provided that you supply the appropriate client key and secret key values.
+
 ### Find Employees
 
 <http://www.ascentis.com/api/finder.asp>
+
+```Javascript
+ascentis.getEmployees(function (err, data) {
+  if (!err) {
+    // we haz teh datas
+  }
+});
+```
+
+If you would like to search for a specific employee, simply provide the search criteria when calling the method:
+
+```Javascript
+var criteria = {
+  firstname : 'Broseph',
+  lastname : 'McGee'
+};
+
+ascentis.getEmployees(criteria, function (err, data) {
+  if (!err) {
+    // we haz teh datas
+  }
+});
+```
 
 ### Attach Files to Employee
 
@@ -41,6 +85,14 @@ Ascentis Web API documentation: <http://www.ascentis.com/api/Documentation.asp>
 ### Access User Defined Employee Fields
 
 <http://www.ascentis.com/api/custom.asp>
+
+```Javascript
+ascentis.getFields(function (err, data) {
+  if (!err) {
+    // we haz teh datas
+  }
+});
+```
 
 ### Work With Compensation Data
 
@@ -78,17 +130,76 @@ Ascentis Web API documentation: <http://www.ascentis.com/api/Documentation.asp>
 
 <http://www.ascentis.com/api/econtact.asp>
 
+
+```Javascript
+var employeeId = 101;
+
+ascentis.getEmergencyContacts(employeeId, function (err, data) {
+  if (!err) {
+    // emergency contacts!
+  }
+});
+```
+
 ### Retrieve All Jobs in Company
 
 <http://www.ascentis.com/api/jobs.asp>
+
+```Javascript
+ascentis.getJobs(function (err, data) {
+  if (!err) {
+    // we haz teh jobs
+  }
+});
+```
+
+If you would like to retrieve a specific job, provide a job ID:
+
+```Javascript
+var jobId = 101;
+
+ascentis.getJobs(jobId, function (err, data) {
+  if (!err) {
+    // we haz teh specific job
+  }
+});
+```
 
 ### Retrieve All Locations in Company
 
 <http://www.ascentis.com/api/location.asp>
 
+```Javascript
+ascentis.getLocations(function (err, data) {
+  if (!err) {
+    // we haz teh locations
+  }
+});
+```
+
+If you would like to retrieve a specific location, provide a location ID:
+
+```Javascript
+var locationId = 101;
+
+ascentis.getLocations(locationId, function (err, data) {
+  if (!err) {
+    // we haz teh specific location
+  }
+});
+```
+
 ### Bulk Data Retrieval
 
 <http://www.ascentis.com/api/rawdata.asp>
+
+```Javascript
+ascentis.getRawData(function (err, data) {
+  if (!err) {
+    // we haz teh raw datas
+  }
+});
+```
 
 ## License
 
