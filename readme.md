@@ -80,6 +80,8 @@ client.getEmployees(criteria, function (err, data) {
 
 <http://www.ascentis.com/api/benefitsenrollment.asp>
 
+* Not supported yet
+
 ### Find Benefit Plans
 
 <http://www.ascentis.com/api/FindPlan.asp>
