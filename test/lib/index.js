@@ -103,7 +103,11 @@ describe('unit tests for component', function () {
 		});
 
 		it('should properly retrieve employee direct deposits', function (done) {
-			client.getDirectDeposits(1, function (err, data) {
+			var criteria = {
+				employeeId : 1
+			};
+
+			client.getDirectDeposits(criteria, function (err, data) {
 				should.not.exist(err);
 				should.exist(data);
 				data.path.should.contain('/testing/api/v1.1/employee/1/deposit');
@@ -127,7 +131,11 @@ describe('unit tests for component', function () {
 		});
 
 		it('should properly retrieve employee emergency contacts', function (done) {
-			client.getEmergencyContacts(1, function (err, data) {
+			var criteria = {
+				employeeId : 1
+			};
+
+			client.getEmergencyContacts(criteria, function (err, data) {
 				should.not.exist(err);
 				should.exist(data);
 				data.path.should.contain('/testing/api/v1.1/employee/1/emergency');
@@ -245,7 +253,11 @@ describe('unit tests for component', function () {
 		});
 
 		it('should properly retrieve a specific location', function (done) {
-			client.getLocations(1, function (err, data) {
+			var criteria = {
+				locationId : 1
+			};
+
+			client.getLocations(criteria, function (err, data) {
 				should.not.exist(err);
 				should.exist(data);
 				data.path.should.contain('/testing/api/v1.1/location/1');
@@ -264,6 +276,23 @@ describe('unit tests for component', function () {
 				should.not.exist(err);
 				should.exist(data);
 				data.path.should.contain('/testing/api/v1.1/job');
+				data.headers.should.include.keys('Accept');
+				data.headers.should.include.keys('Authorization');
+				data.headers.should.include.keys('Timestamp');
+
+				done();
+			});
+		});
+
+		it('should properly retrieve a specific job', function (done) {
+			var criteria = {
+				jobId : 1
+			};
+
+			client.getJobs(criteria, function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
+				data.path.should.contain('/testing/api/v1.1/job/1');
 				data.headers.should.include.keys('Accept');
 				data.headers.should.include.keys('Authorization');
 				data.headers.should.include.keys('Timestamp');

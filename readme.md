@@ -134,9 +134,11 @@ Not supported yet
 <http://www.ascentis.com/api/directdep.asp>
 
 ```Javascript
-var employeeId = 1;
+var criteria = {
+  employeeId : 1
+};
 
-client.getDirectDeposits(employeeId, function (err, data) {
+client.getDirectDeposits(criteria, function (err, data) {
   if (!err) {
     // we haz teh datas
   }
@@ -180,9 +182,11 @@ client.getCOBRAEligibleEmployees(criteria, function (err, data) {
 <http://www.ascentis.com/api/econtact.asp>
 
 ```Javascript
-var employeeId = 101;
+var criteria = {
+  employeeId : 101
+};
 
-client.getEmergencyContacts(employeeId, function (err, data) {
+client.getEmergencyContacts(criteria, function (err, data) {
   if (!err) {
     // emergency contacts!
   }
@@ -204,9 +208,11 @@ client.getJobs(function (err, data) {
 If you would like to retrieve a specific job, provide a job ID:
 
 ```Javascript
-var jobId = 101;
+var criteria = {
+  jobId : 101
+};
 
-client.getJobs(jobId, function (err, data) {
+client.getJobs(criteria, function (err, data) {
   if (!err) {
     // we haz teh specific job
   }
@@ -228,9 +234,11 @@ client.getLocations(function (err, data) {
 If you would like to retrieve a specific location, provide a location ID:
 
 ```Javascript
-var locationId = 101;
+var criteria = {
+  locationId : 101
+};
 
-client.getLocations(locationId, function (err, data) {
+client.getLocations(criteria, function (err, data) {
   if (!err) {
     // we haz teh specific location
   }
