@@ -1,31 +1,40 @@
 {
-	"name" : "node-ascentis",
-	"description" : "a client library for the Ascentis Web API",
-	"private" : false,
-	"version" : "0.1.1",
-	"author" : "Joshua Thomas <jthomas@playnetwork.com>",
-	"engine" : "node >= 0.8.0",
-	"keywords" : ["ascentis", "HRIS", "human resources"],
-	"repository" : {
-		"type" : "git",
-		"url" : "ssh://git@github.org:PlayNetwork/node-ascentis.git" },
-	"main" : "./lib",
-	"scripts" : {
-		"pretest" : "jshint lib/*.js test/*.js ; rm -rf lib-cov ; jscoverage lib lib-cov",
-		"test" : "mocha --check-leaks -R spec -r ./test/common.js ./test/lib ./test/functional",
-		"coverage" : "NODE_ASCENTIS_COVERAGE=true mocha -R mocha-lcov-reporter -r ./test/common.js ./test/lib | ./node_modules/coveralls/bin/coveralls.js",
-		"posttest" : "rm -rf reports ; mkdir -p reports ; NODE_ASCENTIS_COVERAGE=true mocha -R html-cov -r ./test/common.js ./test/lib > reports/coverage.html"
-	},
-	"dependencies" : {
-		"moment" : "~2.1.0",
-		"xml2js" : "~0.2.8"
-	},
-	"devDependencies" : {
-		"chai" : "*",
-		"coveralls" : "*",
-		"jscoverage" : "*",
-		"jshint" : "*",
-		"mocha" : "*",
-		"mocha-lcov-reporter" : "*"
-	}
+  "name": "ascentis",
+  "description": "a client library for the Ascentis Web API",
+  "private": false,
+  "version": "0.1.1",
+  "author": "Joshua Thomas <jthomas@playnetwork.com>",
+  "engine": "node >= 0.8.0",
+  "keywords": [
+    "ascentis",
+    "HRIS",
+    "human resources"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "ssh://git@github.org:PlayNetwork/node-ascentis.git"
+  },
+  "main": "./lib",
+  "scripts": {
+    "pretest": "jshint lib/*.js test/*.js ; rm -rf lib-cov ; jscoverage lib lib-cov",
+    "test": "mocha --check-leaks -R spec -r ./test/common.js ./test/lib ./test/functional",
+    "coverage": "NODE_ASCENTIS_COVERAGE=true mocha -R mocha-lcov-reporter -r ./test/common.js ./test/lib | ./node_modules/coveralls/bin/coveralls.js",
+    "posttest": "rm -rf reports ; mkdir -p reports ; NODE_ASCENTIS_COVERAGE=true mocha -R html-cov -r ./test/common.js ./test/lib > reports/coverage.html"
+  },
+  "dependencies": {
+    "moment": "~2.1.0",
+    "xml2js": "~0.2.8"
+  },
+  "devDependencies": {
+    "chai": "*",
+    "coveralls": "*",
+    "jscoverage": "*",
+    "jshint": "*",
+    "mocha": "*",
+    "mocha-lcov-reporter": "*"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "license": "MIT"
 }
