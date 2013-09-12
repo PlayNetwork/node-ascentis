@@ -31,6 +31,43 @@ describe('unit tests for component', function () {
 		});
 	});
 
+	describe('#getChanges', function () {
+		it('should report an exception if no from or id parameter is supplied', function (done) {
+			client.getChanges(function (err, data) {
+				should.exist(err);
+				should.not.exist(data);
+
+				done();
+			});
+		});
+
+		it('should properly retrieve changes with from parameter', function (done) {
+			client.getChanges({ from : '1/1/2013' }, function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
+				data.path.should.contain('/testing/api/v1.1/changes?from=1/1/2013');
+				data.headers.should.include.keys('Accept');
+				data.headers.should.include.keys('Authorization');
+				data.headers.should.include.keys('Timestamp');
+
+				done();
+			});
+		});
+
+		it('should properly retrieve changes with id parameter', function (done) {
+			client.getChanges({ id : 1 }, function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
+				data.path.should.contain('/testing/api/v1.1/changes/1');
+				data.headers.should.include.keys('Accept');
+				data.headers.should.include.keys('Authorization');
+				data.headers.should.include.keys('Timestamp');
+
+				done();
+			});
+		});
+	});
+
 	describe('#getCOBRAEligibleEmployees', function () {
 		it('should report an exception if no from parameter is supplied', function (done) {
 			client.getCOBRAEligibleEmployees(function (err, data) {
