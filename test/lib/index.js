@@ -31,6 +31,30 @@ describe('unit tests for component', function () {
 		});
 	});
 
+	describe('#getCOBRAEligibleEmployees', function () {
+		it('should report an exception if no from parameter is supplied', function (done) {
+			client.getCOBRAEligibleEmployees(function (err, data) {
+				should.exist(err);
+				should.not.exist(data);
+
+				done();
+			});
+		});
+
+		it('should properly retrieve COBRA eligible employees', function (done) {
+			client.getCOBRAEligibleEmployees({ from : '1/1/2013' }, function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
+				data.path.should.contain('/testing/api/v1.1/cobra?from=1/1/2013');
+				data.headers.should.include.keys('Accept');
+				data.headers.should.include.keys('Authorization');
+				data.headers.should.include.keys('Timestamp');
+
+				done();
+			});
+		});
+	});
+
 	describe('#getEmergencyContacts', function () {
 		it('should report an exception if no employeeId is supplied', function (done) {
 			client.getEmergencyContacts(function (err, data) {

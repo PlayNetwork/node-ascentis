@@ -126,10 +126,21 @@ ascentis.getFields(function (err, data) {
 
 <http://www.ascentis.com/api/cobra.asp>
 
+```Javascript
+var criteria = {
+  from : '01/01/2013'
+};
+
+ascentis.getCOBRAEligibleEmployees(criteria, function (err, data) {
+  if (!err) {
+    // we haz teh datas
+  }
+});
+```
+
 ### Find Emergency Contacts for Employee
 
 <http://www.ascentis.com/api/econtact.asp>
-
 
 ```Javascript
 var employeeId = 101;
