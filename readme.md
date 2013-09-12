@@ -2,7 +2,7 @@
 
 A node library for consuming Ascentis Web APIs.
 
-[![Build Status](https://travis-ci.org/PlayNetwork/node-ascentis.png?branch=master)](https://travis-ci.org/PlayNetwork/node-ascentis) [![Coverage Status](https://coveralls.io/repos/PlayNetwork/node-ascentis/badge.png?branch=master)](https://coveralls.io/r/PlayNetwork/node-ascentis?branch=master)
+[![Build Status](https://travis-ci.org/PlayNetwork/node-ascentis.png?branch=develop)](https://travis-ci.org/PlayNetwork/node-ascentis) [![Coverage Status](https://coveralls.io/repos/PlayNetwork/node-ascentis/badge.png?branch=develop)](https://coveralls.io/r/PlayNetwork/node-ascentis?branch=develop)
 
 ## Features
 
