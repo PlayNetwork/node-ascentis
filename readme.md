@@ -106,6 +106,19 @@ client.getFields(function (err, data) {
 
 <http://www.ascentis.com/api/employeebenefits.asp>
 
+```Javascript
+var criteria = {
+  employeeId : 1,
+  asof : '2013-01-01'
+};
+
+client.getEmployeeBenefits(criteria, function (err, data) {
+  if (!err) {
+    // we haz teh datas
+  }
+});
+```
+
 ### Retrieve Job Information for Employee
 
 <http://www.ascentis.com/api/job.asp>

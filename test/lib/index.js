@@ -148,6 +148,51 @@ describe('unit tests for component', function () {
 		});
 	});
 
+	describe('#getEmployeeBenefits', function () {
+		it('should throw error if employeeId is not present', function (done) {
+			client.getEmployeeBenefits(function (err, data) {
+				should.exist(err);
+				should.not.exist(data);
+
+				done();
+			});
+		});
+
+		it ('should properly retrieve job details', function (done) {
+			var criteria = {
+				employeeId : 1
+			};
+
+			client.getEmployeeBenefits(criteria, function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
+				data.path.should.contain('/testing/api/v1.1/employee/1/benefits');
+				data.headers.should.include.keys('Accept');
+				data.headers.should.include.keys('Authorization');
+				data.headers.should.include.keys('Timestamp');
+
+				done();
+			});
+		});
+
+		it ('should properly retrieve job details with asof parameter', function (done) {
+			var criteria = {
+				employeeId : 1,
+				asof : '2013-01-01'
+			};
+
+			client.getEmployeeBenefits(criteria, function (err, data) {
+				should.not.exist(err);
+				should.exist(data);
+				data.path.should.contain('/testing/api/v1.1/employee/1/benefits?asof=2013-01-01');
+				data.headers.should.include.keys('Accept');
+				data.headers.should.include.keys('Authorization');
+				data.headers.should.include.keys('Timestamp');
+
+				done();
+			});
+		});
+	});
 
 	describe('#getEmployeeJobDetails', function () {
 		it('should throw error if employeeId is not present', function (done) {
@@ -167,7 +212,7 @@ describe('unit tests for component', function () {
 			client.getEmployeeJobDetails(criteria, function (err, data) {
 				should.not.exist(err);
 				should.exist(data);
-				data.path.should.contain('/testing/api/v1.1/employee/1');
+				data.path.should.contain('/testing/api/v1.1/employee/1/job');
 				data.headers.should.include.keys('Accept');
 				data.headers.should.include.keys('Authorization');
 				data.headers.should.include.keys('Timestamp');
