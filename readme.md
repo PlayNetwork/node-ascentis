@@ -122,6 +122,18 @@ ascentis.getFields(function (err, data) {
 
 <http://www.ascentis.com/api/changelog.asp>
 
+```Javascript
+var criteria = {
+  from : '01/01/2013'
+};
+
+ascentis.getChanges(criteria, function (err, data) {
+  if (!err) {
+    // we haz teh datas
+  }
+});
+```
+
 ### Find COBRA Eligible Employees
 
 <http://www.ascentis.com/api/cobra.asp>
