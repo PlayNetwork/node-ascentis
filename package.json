@@ -20,10 +20,10 @@
     "test": "mocha --check-leaks -R spec -r ./test/common.js ./test/lib",
     "coverage": "NODE_ASCENTIS_COVERAGE=true mocha -R mocha-lcov-reporter -r ./test/common.js ./test/lib | ./node_modules/coveralls/bin/coveralls.js",
     "posttest": "rm -rf reports ; mkdir -p reports ; NODE_ASCENTIS_COVERAGE=true mocha -R html-cov -r ./test/common.js ./test/lib > reports/coverage.html",
-  	"functional": "mocha -R spec -r ./test/common.js ./test/functional"
+    "functional": "mocha -R spec -r ./test/common.js ./test/functional"
   },
   "dependencies": {
-    "moment": "~2.1.0",
+    "moment": "~2.19.3",
     "xml2js": "~0.2.8"
   },
   "devDependencies": {
